@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="736" viewBox="0 0 920 736" font-family="Menlo, Consolas, 'DejaVu Sans Mono', monospace" font-size="14">
+  <!-- Terminal transcript of a real run of `declinometer scan` and
+       `declinometer diff` against the shipped example fixtures. Text is
+       copied from an actual execution; dim "..." lines mark elided output. -->
+  <rect width="920" height="736" rx="10" fill="#0d1117"/>
+  <rect width="920" height="34" rx="10" fill="#161b22"/>
+  <rect y="20" width="920" height="14" fill="#161b22"/>
+  <circle cx="22" cy="17" r="6" fill="#ff5f57"/>
+  <circle cx="42" cy="17" r="6" fill="#febc2e"/>
+  <circle cx="62" cy="17" r="6" fill="#28c840"/>
+  <text x="460" y="22" fill="#8b949e" text-anchor="middle" font-size="12">declinometer — measure refusals, catch the spike</text>
+  <g fill="#c9d1d9">
+    <text x="24" y="62"><tspan fill="#7ee787">$</tspan> echo "I'm sorry, but I can't help with that request." | declinometer scan --explain</text>
+    <text x="24" y="86">verdict: <tspan fill="#f85149">refusal</tspan></text>
+    <text x="24" y="110">refusal score: 11.2 (threshold 3.0)</text>
+    <text x="24" y="134" fill="#8b949e">...</text>
+    <text x="24" y="158">signals:</text>
+    <text x="24" y="182">  [<tspan fill="#d29922">apology_contrast</tspan>] sorry_but "i'm sorry, but" at 0-14 weight 1.5 x1.5 (opening)</text>
+    <text x="24" y="206">  [<tspan fill="#d29922">hard_refusal</tspan>] cannot_verb "i can't help" at 15-27 weight 3 x1.5 (opening)</text>
+    <text x="24" y="230">  [<tspan fill="#d29922">hard_refusal</tspan>] cant_help_with_that "can't help with that" at 17-37 weight 3 x1.5 (opening)</text>
+    <text x="24" y="270"><tspan fill="#7ee787">$</tspan> declinometer diff prompt-v1 prompt-v2 --db history.json</text>
+    <text x="24" y="294">declinometer diff: prompt-v1 -&gt; prompt-v2</text>
+    <text x="24" y="318">  outputs   12 -&gt; 12</text>
+    <text x="24" y="342">  refusal   8.3% -&gt; 33.3%  (<tspan fill="#f85149">+25.0 pp</tspan>)</text>
+    <text x="24" y="366">  partial   0.0% -&gt; 8.3%  (<tspan fill="#f85149">+8.3 pp</tspan>)</text>
+    <text x="24" y="390">  hedged    8.3% -&gt; 16.7%  (<tspan fill="#d29922">+8.3 pp</tspan>)</text>
+    <text x="24" y="414">  comply    83.3% -&gt; 41.7%  (<tspan fill="#f85149">-41.7 pp</tspan>)</text>
+    <text x="24" y="438">signal shifts:</text>
+    <text x="24" y="462">  hard_refusal           2 -&gt; 7  (<tspan fill="#f85149">+5</tspan>)</text>
+    <text x="24" y="486">  uncertainty            4 -&gt; 7  (<tspan fill="#d29922">+3</tspan>)</text>
+    <text x="24" y="510" fill="#8b949e">  ...</text>
+    <text x="24" y="534">flipped worse (5):</text>
+    <text x="24" y="558">  case-04: comply -&gt; <tspan fill="#f85149">refusal</tspan></text>
+    <text x="24" y="582">  case-06: comply -&gt; <tspan fill="#f85149">refusal</tspan></text>
+    <text x="24" y="606">  case-10: comply -&gt; <tspan fill="#f85149">refusal</tspan></text>
+    <text x="24" y="630">  case-02: comply -&gt; <tspan fill="#d29922">partial</tspan></text>
+    <text x="24" y="654">  case-08: comply -&gt; <tspan fill="#d29922">hedged</tspan></text>
+    <text x="24" y="678">verdict: <tspan fill="#f85149">REGRESSION</tspan> (declined rate +33.3 pp exceeds tolerance 0 pp)</text>
+    <text x="24" y="710" fill="#8b949e">exit code 1 — wire it straight into your release gate</text>
+  </g>
+</svg>
